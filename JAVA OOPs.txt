@@ -1,0 +1,582 @@
+Q1) Method Overloading
+
+class Calculator {
+    // Overloaded methods
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+public class MethodOverloadingDemo {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(5, 10));        // 15
+        System.out.println(calc.add(5.5, 4.5));    // 10.0
+        System.out.println(calc.add(1, 2, 3));     // 6
+    }
+}
+
+Q2)  Method Overriding
+
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class MethodOverridingDemo {
+    public static void main(String[] args) {
+        Animal a = new Dog(); // Upcasting
+        a.sound(); // Dog barks
+    }
+}
+
+Q3) Abstract Class with Two Child Classes
+
+abstract class Shape {
+    abstract void draw(); // Abstract method
+}
+
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+
+class Rectangle extends Shape {
+    void draw() {
+        System.out.println("Drawing Rectangle");
+    }
+}
+
+public class AbstractClassDemo {
+    public static void main(String[] args) {
+        Shape s1 = new Circle();
+        Shape s2 = new Rectangle();
+        s1.draw();
+        s2.draw();
+    }
+}
+
+Q4)  Interface Implementation in Multiple Classes
+
+interface Payment {
+    void pay(double amount);
+}
+
+class CreditCard implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " via Credit Card");
+    }
+}
+
+class PayPal implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " via PayPal");
+    }
+}
+
+public class InterfaceDemo {
+    public static void main(String[] args) {
+        Payment p1 = new CreditCard();
+        Payment p2 = new PayPal();
+        p1.pay(200);
+        p2.pay(150);
+    }
+}
+
+Q5)Upcasting & Downcasting
+
+class Parent {
+    void show() {
+        System.out.println("Parent class method");
+    }
+}
+
+class Child extends Parent {
+    void display() {
+        System.out.println("Child class method");
+    }
+}
+
+public class CastingDemo {
+    public static void main(String[] args) {
+        Parent p = new Child(); // Upcasting
+        p.show();
+
+        // Downcasting
+        Child c = (Child) p;
+        c.display();
+    }
+}
+
+Q6)  Encapsulation with Getters/Setters
+
+class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        }
+    }
+}
+
+public class EncapsulationDemo {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.setName("John");
+        p.setAge(25);
+        System.out.println(p.getName() + " - " + p.getAge());
+    }
+}
+
+
+Q7)  Inheritance Hierarchy (Vehicle → Car → SportsCar)
+
+class Vehicle {
+    void start() {
+        System.out.println("Vehicle starts");
+    }
+}
+
+class Car extends Vehicle {
+    void drive() {
+        System.out.println("Car is driving");
+    }
+}
+
+class SportsCar extends Car {
+    void turbo() {
+        System.out.println("SportsCar turbo boost");
+    }
+}
+
+public class InheritanceDemo {
+    public static void main(String[] args) {
+        SportsCar sc = new SportsCar();
+        sc.start();
+        sc.drive();
+        sc.turbo();
+    }
+}
+
+Q8)  Composition
+
+class Engine {
+    void start() {
+        System.out.println("Engine starts");
+    }
+}
+
+class Car {
+    private Engine engine;
+
+    Car() {
+        engine = new Engine(); // Composition
+    }
+
+    void startCar() {
+        engine.start();
+        System.out.println("Car is ready to drive");
+    }
+}
+
+public class CompositionDemo {
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.startCar();
+    }
+}
+
+Q9)  Immutable Class
+
+final class Student {
+    private final String name;
+    private final int rollNo;
+
+    public Student(String name, int rollNo) {
+        this.name = name;
+        this.rollNo = rollNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public int getRollNo() {
+        return rollNo;
+    }
+}
+
+public class ImmutableClassDemo {
+    public static void main(String[] args) {
+        Student s = new Student("Alice", 101);
+        System.out.println(s.getName() + " - " + s.getRollNo());
+    }
+}
+
+Q10) Runtime Polymorphism with Animal & Subclasses
+
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+class Cow extends Animal {
+    void sound() {
+        System.out.println("Cow moos");
+    }
+}
+
+public class RuntimePolymorphismDemo {
+    public static void main(String[] args) {
+        Animal a;
+        a = new Cat();
+        a.sound();
+        a = new Cow();
+        a.sound();
+    }
+}
+
+Q11) Upcasting & Downcasting Twist
+
+class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+    void guardHouse() {
+        System.out.println("Dog is guarding the house");
+    }
+}
+
+public class CastingDemo {
+    public static void main(String[] args) {
+        Animal a = new Dog(); // Upcasting
+        a.sound();
+
+        // Downcasting to access Dog-specific method
+        Dog d = (Dog) a;
+        d.guardHouse();
+
+        // Dangerous cast
+        Animal a2 = new Animal();
+        Dog d2 = (Dog) a2; // What happens here?
+        d2.sound();
+    }
+}
+
+Q12) Method Overloading with Null
+
+class Test {
+    void display(String s) {
+        System.out.println("String method");
+    }
+    void display(Object o) {
+        System.out.println("Object method");
+    }
+
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.display(null); 
+    }
+}
+
+Q13) Overriding + Field Hiding
+
+class Parent {
+    String name = "Parent";
+
+    void showName() {
+        System.out.println("Parent method: " + name);
+    }
+}
+
+class Child extends Parent {
+    String name = "Child";
+
+    void showName() {
+        System.out.println("Child method: " + name);
+    }
+}
+
+public class FieldHidingDemo {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        System.out.println(p.name);  // Which name?
+        p.showName();                // Which method?
+    }
+}
+
+Q14) Constructor Chaining with Inheritance
+
+class A {
+    A() {
+        System.out.println("A's Constructor");
+    }
+}
+
+class B extends A {
+    B() {
+        System.out.println("B's Constructor");
+    }
+}
+
+class C extends B {
+    C() {
+        System.out.println("C's Constructor");
+    }
+}
+
+public class Test1 {
+    public static void main(String[] args) {
+        new C();
+    }
+}
+
+Q15)  Overloading with Primitive and Wrapper
+
+class OverloadTest {
+    void show(int a) {
+        System.out.println("int");
+    }
+    void show(Integer a) {
+        System.out.println("Integer");
+    }
+
+    public static void main(String[] args) {
+        OverloadTest ot = new OverloadTest();
+        ot.show(10); 
+    }
+}
+
+Q16)  Static Method Hiding
+
+class Parent {
+    static void display() {
+        System.out.println("Parent static");
+    }
+}
+
+class Child extends Parent {
+    static void display() {
+        System.out.println("Child static");
+    }
+}
+
+public class Test3 {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        p.display();  
+    }
+}
+
+Q17) Interface Default Methods Conflict
+
+interface A {
+    default void show() { System.out.println("A's show"); }
+}
+
+interface B {
+    default void show() { System.out.println("B's show"); }
+}
+
+class C implements A, B {
+    public void show() {
+        A.super.show();
+    }
+}
+
+public class Test4 {
+    public static void main(String[] args) {
+        new C().show();
+    }
+}
+
+Q18) Null Reference Calling Static Method
+
+class MyClass {
+    static void greet() {
+        System.out.println("Hello!");
+    }
+}
+
+public class Test5 {
+    public static void main(String[] args) {
+        MyClass obj = null;
+        obj.greet(); 
+    }
+}
+
+Q19) Abstract Class with Constructor
+
+abstract class Shape {
+    Shape() {
+        System.out.println("Shape constructor");
+    }
+    abstract void draw();
+}
+
+class Circle extends Shape {
+    Circle() {
+        System.out.println("Circle constructor");
+    }
+    void draw() { System.out.println("Drawing Circle"); }
+}
+
+public class Test6 {
+    public static void main(String[] args) {
+        new Circle().draw();
+    }
+}
+
+Q20)  Method Overloading with Varargs
+
+class VarArgsTest {
+    void display(int a, int b) {
+        System.out.println("Two ints");
+    }
+    void display(int... a) {
+        System.out.println("Varargs");
+    }
+
+    public static void main(String[] args) {
+        VarArgsTest v = new VarArgsTest();
+        v.display(10, 20); 
+    }
+}
+
+Q21)  Final Method Override Attempt
+
+class A {
+    final void show() {
+        System.out.println("Final method");
+    }
+}
+
+class B extends A {
+    // void show() {} // ERROR
+}
+
+public class Test8 {
+    public static void main(String[] args) {
+        new B().show();
+    }
+}
+
+Q22) String Equality Trap
+
+public class Test9 {
+    public static void main(String[] args) {
+        String s1 = "Java";
+        String s2 = new String("Java");
+        System.out.println(s1 == s2);
+        System.out.println(s1.equals(s2));
+    }
+}
+
+Q23) Runtime Polymorphism & Casting
+
+class Vehicle {
+    void start() { System.out.println("Vehicle starts"); }
+}
+
+class Car extends Vehicle {
+    void start() { System.out.println("Car starts"); }
+    void drift() { System.out.println("Car drifting"); }
+}
+
+public class Test10 {
+    public static void main(String[] args) {
+        Vehicle v = new Car();
+        v.start(); 
+        ((Car) v).drift();
+    }
+}
+
+Q24) Tightly Encapsulation
+
+class BankAccount {
+    // All instance variables are private (tight encapsulation)
+    private String accountHolder;
+    private double balance;
+
+    // Constructor
+    public BankAccount(String accountHolder, double balance) {
+        this.accountHolder = accountHolder;
+        this.balance = balance;
+    }
+
+    // Getter and Setter for accountHolder
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+    public void setAccountHolder(String accountHolder) {
+        this.accountHolder = accountHolder;
+    }
+
+    // Getter and Setter for balance
+    public double getBalance() {
+        return balance;
+    }
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        }
+    }
+}
+
+public class TightlyEncapsulatedDemo {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount("Alice", 1000);
+
+        // Accessing through getters/setters only (no direct variable access)
+        acc.deposit(500);
+        acc.withdraw(200);
+
+        System.out.println(acc.getAccountHolder() + " has balance: " + acc.getBalance());
+    }
+}

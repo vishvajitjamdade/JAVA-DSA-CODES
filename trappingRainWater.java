@@ -33,5 +33,7 @@ public class trappingRainWater {
 
         System.out.println("Total trapped water : " + trapped);
 
+        sc.close();
+
     }
 }

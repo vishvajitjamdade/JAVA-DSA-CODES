@@ -24,5 +24,7 @@ public class movesZerostoEnd{
         for(int num : arr){
             System.out.print(num + " ");
         }
+
+        sc.close();
     }
 }

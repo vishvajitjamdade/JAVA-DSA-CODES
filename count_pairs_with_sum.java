@@ -27,5 +27,6 @@ public class count_pairs_with_sum {
         }
 
         System.out.println("The no. of  pairs in array : " + count);
+        sc.close();
     }
 }

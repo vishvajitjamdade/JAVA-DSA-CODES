@@ -1,6 +1,6 @@
 public class task1 {
     public static void main(String[] args) {
-        String str = "Good Morning";
+        String str = "GooD MorninG";
         StringBuilder sb = new StringBuilder();
 
         for(char ch : str.toCharArray()){

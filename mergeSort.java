@@ -1,30 +1,30 @@
-public class mergeSort {
+import java.util.*;
 
-    public static void mergesort(int si, int ei, int arr[]) {
-        if (si >= ei) {
+public class mergeSort{
+
+    public static void divide(int arr[],int si, int ei){
+        if(si>=ei){
             return;
         }
 
         int mid = si+(ei-si)/2;
+        divide(arr, si, mid); //left part
+        divide(arr, mid+1, ei); //right part
 
-        mergesort(si, mid, arr);
-        mergesort(mid+1, ei, arr);
-        merge(si, ei, mid, arr);
+        merge(arr, si, ei, mid);
     }
 
-    public static void merge(int si, int ei, int mid,int arr[]){
-        int temp[] = new int[ei-si+1];
-
+    public static void merge(int arr[],int si,int ei,int mid) {
         int i = si;
         int j = mid+1;
         int k = 0;
+        int temp[] = new int[ei-si+1];
 
         while(i<=mid && j<=ei){
-            if(arr[i]<arr[j]){
-                temp[k] = arr[i++];
-            }
-            else{
+            if(arr[i] > arr[j]){
                 temp[k] = arr[j++];
+            }else{
+                temp[k] = arr[i++];
             }
             k++;
         }
@@ -37,26 +37,28 @@ public class mergeSort {
             temp[k++] = arr[j++];
         }
 
-        int m = si;
-        for(int num : temp){
-            arr[m++] = num;
+        int x = si;
+        for(int l = 0;l<temp.length;l++){
+            arr[x++] = temp[l];
         }
-    }
 
-    public static void print(int arr[]) {
-        for(int num : arr){
-            System.out.print(num + " ");
-        }
-        System.out.println();
     }
-
+    
     public static void main(String[] args) {
-        
-        int arr[] = { 1, 5, 1, 7, 3, 9, 2 };
-        System.out.println("Before Sorting : ");
-        print(arr);
-        mergesort(0, arr.length-1, arr);
-        System.out.println("After Sorting");
-        print(arr);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the array : ");
+        int n = sc.nextInt();
+
+        int arr[] = new int[n];
+        System.out.println("Enter the elements in array : ");
+        for(int i = 0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
+
+        divide(arr, 0, n-1);
+        System.out.println("Sorted Array : ");
+        for(int l = 0;l<arr.length;l++){
+            System.out.print(arr[l] + " ");
+        }
     }
 }
